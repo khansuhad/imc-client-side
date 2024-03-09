@@ -7,36 +7,37 @@ import { RxCross1 } from "react-icons/rx";
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const navLink = <>
+     <button className="block  text-[#240A34] hover:text-gray-400 py-2 px-4 cursor-pointer">
+            Home
+            </button>
+            <button  className="block text-[#240A34]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+            Dashboard
+            </button>
+            <button  className="block text-[#240A34]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+           Feedback
+            </button>
+    </>
 
 
 
 
 
     return (
-        <header className="w-full  ">
-      <nav className={`py-4 md:px-12 px-4 bg-white `}>
+        <header className="w-full bg-[#FBFADA]  ">
+      <nav className={`py-4 md:px-12 px-4  `}>
         <div className="flex items-center justify-between">
     <div className='flex items-center'>
     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden text-body text-3xl">
             { isMenuOpen === false ? <HiMenu /> : <RxCross1/> }
           </button>
           <div className="text-white font-bold text-lg cursor-pointer">
-            <img src='https://i.postimg.cc/NMxGW3Xr/Whats-App-Image-2023-12-20-at-10-06-27-PM.jpg'  className=" w-40 lg:w-60" />
+<figure className='h-16 w-16 rounded-full  flex justify-center items-center'>      <img  src='https://i.postimg.cc/cC65F4MP/Screenshot-2024-03-09-183954.png'  className=" w-12 lg:w-12 rounded-full " /></figure>
           </div>
     </div>
           <div className="lg:flex   gap-3 hidden text-body font-medium">
         <div className='flex '>
-        <button
-              className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-            Home
-            </button>
-            <button  className="block  hover:text-gray-400 py-2 px-4 cursor-pointer">
-            Dashboard
-            </button>
-            <button  className="block  hover:text-gray-400 py-2 px-4 cursor-pointer">
-           Feedback
-            </button>
+           {navLink}
         </div>
          
       
@@ -85,15 +86,7 @@ const Navbar = () => {
      
         {isMenuOpen && (
           <div className="mt-4 flex justify-center flex-col bg-blue-600 rounded-lg lg:hidden text-black font-medium ">
-            <button   className="block hover:text-gray-400 py-2">
-              Home
-            </button>
-            <button  className="block  hover:text-gray-400 py-2 px-4 cursor-pointer">
-            Dashboard
-            </button>
-            <button  className="block  hover:text-gray-400 py-2 px-4 cursor-pointer">
-            Feedback
-            </button>
+            {navLink}
           </div>
         )}
       
