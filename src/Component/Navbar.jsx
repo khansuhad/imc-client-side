@@ -8,13 +8,13 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navLink = <>
-     <button className="block  text-[#240A34] hover:text-gray-400 py-2 px-4 cursor-pointer">
+     <button className="block text-2xl font-semibold text-[#5E1675] hover:text-gray-400 py-2 px-4 cursor-pointer">
             Home
             </button>
-            <button  className="block text-[#240A34]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+            <button  className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
             Dashboard
             </button>
-            <button  className="block text-[#240A34]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+            <button  className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
            Feedback
             </button>
     </>
@@ -24,7 +24,7 @@ const Navbar = () => {
 
 
     return (
-        <header className="w-full bg-[#FBFADA]  ">
+        <header className="w-full bg-[#FFD23F]  ">
       <nav className={`py-4 md:px-12 px-4  `}>
         <div className="flex items-center justify-between">
     <div className='flex items-center'>
@@ -32,7 +32,7 @@ const Navbar = () => {
             { isMenuOpen === false ? <HiMenu /> : <RxCross1/> }
           </button>
           <div className="text-white font-bold text-lg cursor-pointer">
-<figure className='h-16 w-16 rounded-full  flex justify-center items-center'>      <img  src='https://i.postimg.cc/cC65F4MP/Screenshot-2024-03-09-183954.png'  className=" w-12 lg:w-12 rounded-full " /></figure>
+<figure className='h-16 w-16 rounded-full  flex justify-center items-center'>      <img  src='https://i.postimg.cc/nzX8Y3C1/infinity-logo.jpg'  className=" w-12 lg:w-12 rounded-full " /></figure>
           </div>
     </div>
           <div className="lg:flex   gap-3 hidden text-body font-medium">

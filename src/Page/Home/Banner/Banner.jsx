@@ -1,8 +1,11 @@
+import Swiperjs from "../Banner/Swiper/Swiperjs"
 
 const Banner = () => {
     return (
-        <div>
-            
+        <div className="h-screen p-5">
+           <div className="h-[60vh]">
+           <Swiperjs/>
+           </div>
         </div>
     );
 };
