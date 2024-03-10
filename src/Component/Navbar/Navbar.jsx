@@ -2,6 +2,7 @@ import  { useState } from 'react';
 
 import { HiMenu } from "react-icons/hi"; 
 import { RxCross1 } from "react-icons/rx"; 
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -11,9 +12,9 @@ const Navbar = () => {
      <button className="block text-2xl font-semibold text-[#5E1675] hover:text-gray-400 py-2 px-4 cursor-pointer">
             Home
             </button>
-            <button  className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+            <Link to="/dashboard" className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
             Dashboard
-            </button>
+            </Link>
             <button  className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
            Feedback
             </button>

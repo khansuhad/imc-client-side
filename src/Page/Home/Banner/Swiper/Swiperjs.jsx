@@ -12,12 +12,7 @@ import './styles.css';
 import { Navigation } from 'swiper/modules';
 
 export default function App() {
-  const backgroundPhoto = {
-    backgroundImage: `url("https://i.postimg.cc/VN0ZFykB/how-to-choose-the-right-domain-name-1.png")`,
-    height: "80vh",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-};
+
   return (
     <>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
