@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import STable from "./Table/STable";
 
 const StudentDetails = () => {
@@ -13,8 +14,8 @@ const StudentDetails = () => {
                     <h1 className="text-xl font-medium  my-2">Parent&rsquo;s Name  : Abdul hafiz khan</h1>
                     <h1 className="text-xl font-medium  my-2">Admission Date  : 12-06-2024 </h1>
                     <div className="flex gap-5 my-2 ">
-                    <button className="btn btn-primary">Edit Profile</button>
-                    <button className="btn btn-primary">Add Payment</button>
+                    <Link to="/dashboard/updateStudentDetails/suhadahmodkhan" className="btn btn-primary">Edit Profile</Link>
+                    <Link to="/dashboard/addpayment/suhadahmodkhan" className="btn btn-primary">Add Payment</Link>
                 </div>
                 </div>
              

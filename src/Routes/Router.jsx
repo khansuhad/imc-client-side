@@ -6,6 +6,9 @@ import AdmissionForm from "../Page/Dashboard/AdmissionForm/AdmissionForm";
 import AllStudents from "../Page/Dashboard/AllStudents/AllStudents";
 import StudentDetails from "../Page/Dashboard/StudentDetails/StudentDetails";
 import DashImg from "../Page/Dashboard/DashImg";
+import UpdateStudentDetails from "../Page/Dashboard/UpdateStudentDetails/UpdateStudentDetails";
+import Addpayment from "../Page/Dashboard/AddPayment/Addpayment";
+import Login from "../Page/Authentication/Login/Login";
 
 
 const Router = createBrowserRouter([
@@ -28,8 +31,16 @@ const Router = createBrowserRouter([
         element:<AdmissionForm/>
       },
       {
+        path:"/dashboard/addpayment/suhadahmodkhan",
+        element:<Addpayment/>
+      },
+      {
         path:"/dashboard",
         element:<DashImg/>
+      },
+      {
+        path:"/dashboard/updateStudentDetails/suhadahmodkhan",
+        element:<UpdateStudentDetails/>
       },
       {
         path:"/dashboard/allstudent",
@@ -40,6 +51,10 @@ const Router = createBrowserRouter([
         element:<StudentDetails/>
       }
     ]
+    },
+    {
+      path:"/login",
+      element:<Login/>
     }
   ]);
 
