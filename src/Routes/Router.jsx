@@ -5,6 +5,7 @@ import Dashboard from "../Page/Dashboard/Dashboard";
 import AdmissionForm from "../Page/Dashboard/AdmissionForm/AdmissionForm";
 import AllStudents from "../Page/Dashboard/AllStudents/AllStudents";
 import StudentDetails from "../Page/Dashboard/StudentDetails/StudentDetails";
+import DashImg from "../Page/Dashboard/DashImg";
 
 
 const Router = createBrowserRouter([
@@ -25,6 +26,10 @@ const Router = createBrowserRouter([
       {
         path:"/dashboard/admissionForm",
         element:<AdmissionForm/>
+      },
+      {
+        path:"/dashboard",
+        element:<DashImg/>
       },
       {
         path:"/dashboard/allstudent",

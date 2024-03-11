@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+
 import Sidebar from "../../Component/Sidebar/Sidebar";
 
 
@@ -6,7 +6,7 @@ import Sidebar from "../../Component/Sidebar/Sidebar";
 const Dashboard = () => {
  
   return (
-   <div>
+   <div className="bg-[#EEEEEE]">
     <Sidebar/>
    </div>
   );

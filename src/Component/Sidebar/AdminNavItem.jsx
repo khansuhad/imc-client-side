@@ -9,7 +9,7 @@ const AdminNavItem = () => {
       <li>
         <NavLink
           to="/dashboard/admissionForm"
-   className="font-semibold text-2xl"
+   className="font-semibold lg:text-2xl"
           
         >
           <MdDashboard />
@@ -18,7 +18,7 @@ const AdminNavItem = () => {
         </NavLink>
         <NavLink
           to="/dashboard/allstudent"
-   className="font-semibold text-2xl"
+   className="font-semibold lg:text-2xl"
           
         >
           <MdDashboard />

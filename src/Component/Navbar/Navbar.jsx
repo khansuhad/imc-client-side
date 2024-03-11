@@ -9,15 +9,15 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navLink = <>
-     <button className="block text-2xl font-semibold text-[#5E1675] hover:text-gray-400 py-2 px-4 cursor-pointer">
+     <Link className="block text-2xl font-semibold text-[#5E1675] hover:text-gray-400 py-2 px-4 cursor-pointer">
             Home
-            </button>
-            <Link to="/dashboard" className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+            </Link>
+            <Link to="/dashboard" className="block text-2xl  font-semibold lg:text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
             Dashboard
             </Link>
-            <button  className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+            <Link  className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
            Feedback
-            </button>
+            </Link>
     </>
 
 
@@ -86,7 +86,7 @@ const Navbar = () => {
 
      
         {isMenuOpen && (
-          <div className="mt-4 flex justify-center flex-col bg-blue-600 rounded-lg lg:hidden text-black font-medium ">
+          <div className="mt-4 flex justify-center flex-col  rounded-lg lg:hidden text-black font-medium ">
             {navLink}
           </div>
         )}

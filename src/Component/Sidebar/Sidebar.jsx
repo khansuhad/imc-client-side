@@ -26,7 +26,7 @@ const Sidebar = () => {
         ></label>
         <ul className="menu py-10 p-4 w-60 md:w-80 min-h-full  bg-[#FFD23F] text-black">
           {/* Sidebar content here */}
-        <div><Link to="/" className="btn bg-transparent mb-10 font-semibold text-2xl"> Infinity Match Center</Link></div>
+        <div className="mb-10"><Link to="/" className=" border-2 rounded cursor-pointer  border-black lg:text-xl bg-transparent  font-semibold  py-2 px-5"> Infinity Match Center</Link></div>
          <AdminNavItem /> 
           {/* common NavLink  */}
           <li className="mt-auto">
@@ -40,14 +40,14 @@ const Sidebar = () => {
               //     ? "bg-fourthColor text-white"
               //     : "text-white"
               // }
-              className="font-semibold text-2xl"
+              className="font-semibold lg:text-2xl"
             >
             Profile
             </NavLink>
           </li>
           {
             <li >
-              <Link    className=" text-black font-semibold text-2xl">Logout</Link>
+              <Link    className=" text-black font-semibold lg:text-2xl">Logout</Link>
             </li>
           }
         </ul>
