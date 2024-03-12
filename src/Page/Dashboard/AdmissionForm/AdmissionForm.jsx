@@ -1,11 +1,34 @@
+import axios from "axios";
 
 const AdmissionForm = () => {
+
+  const handleForm = (e) =>{
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const studentClass = form.studentClass.value;
+    const school = form.school.value;
+    const parentsName = form.parentsName.value;
+    const parentsPhoneNumber = form.parentsPhoneNumber.value;
+    const admissionDate = form.admissionDate.value;
+    const message = form.message.value;
+    const formInfo = {name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message}
+    console.log(formInfo);
+ 
+    axios.post("http://localhost:5000/admissionStudents",formInfo)
+    .then(res => {
+      console.log(res?.data);
+    })
+
+
+  }
+ 
     return (
         <div>
             <h1 className="text-3xl font-semibold text-center mt-10">Admission Form </h1>
             <div className="lg:px-12 px-4 mt-20">
       <div className="md:w-2/3 mx-auto mb-20">
-        <form >
+        <form onSubmit={handleForm}>
           <div className="flex flex-col lg:flex-row gap-8 items-center mb-8">
             <div className="lg:w-1/2 w-full">
               <label
@@ -30,7 +53,7 @@ const AdmissionForm = () => {
               <input
                 type="text"
       required
-                name="subject"
+                name="studentClass"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
@@ -46,7 +69,7 @@ const AdmissionForm = () => {
               <input
                 type="text"
            required
-                name="email"
+                name="school"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
@@ -76,7 +99,7 @@ const AdmissionForm = () => {
               <input
                 type="text"
            required
-                name="email"
+                name="parentsName"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
@@ -90,7 +113,7 @@ const AdmissionForm = () => {
               <input
                 type="number"
           
-                name="phoneNumber"
+                name="parentsPhoneNumber"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
@@ -106,7 +129,7 @@ const AdmissionForm = () => {
               <input
                 type="date"
            required
-                name="date"
+                name="admissionDate"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
@@ -120,7 +143,7 @@ const AdmissionForm = () => {
               <input
                 type="number"
           
-                name="phoneNumber"
+                name="batch"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
