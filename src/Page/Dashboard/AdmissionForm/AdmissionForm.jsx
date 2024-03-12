@@ -20,7 +20,6 @@ const AdmissionForm = () => {
       console.log(res?.data);
     })
 
-
   }
  
     return (
