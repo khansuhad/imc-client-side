@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import useAllStudents from "../../../Hock/useAllStudent";
+
 
 
 const AllStudents = () => {
+  const {allStudents} = useAllStudents();
+  console.log(allStudents);
     const AllStudents = 10 ;
     const students = [...Array(AllStudents).keys()];
     return (

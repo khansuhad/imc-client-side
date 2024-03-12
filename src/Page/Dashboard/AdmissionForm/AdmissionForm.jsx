@@ -1,7 +1,7 @@
-import axios from "axios";
+import useAxiosPublic from "../../../Hock/useAxiosPublic";
 
 const AdmissionForm = () => {
-
+const useAxios = useAxiosPublic();
   const handleForm = (e) =>{
     e.preventDefault();
     const form = e.target;
@@ -15,7 +15,7 @@ const AdmissionForm = () => {
     const formInfo = {name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message}
     console.log(formInfo);
  
-    axios.post("http://localhost:5000/admissionStudents",formInfo)
+    useAxios.post("/admissionStudents",formInfo)
     .then(res => {
       console.log(res?.data);
     })
