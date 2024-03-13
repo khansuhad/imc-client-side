@@ -8,11 +8,12 @@ const useAxios = useAxiosPublic();
     const name = form.name.value;
     const studentClass = form.studentClass.value;
     const school = form.school.value;
+    const phoneNumber = form.phoneNumber.value;
     const parentsName = form.parentsName.value;
     const parentsPhoneNumber = form.parentsPhoneNumber.value;
     const admissionDate = form.admissionDate.value;
     const message = form.message.value;
-    const formInfo = {name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message}
+    const formInfo = {name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message , phoneNumber}
     console.log(formInfo);
  
     useAxios.post("/admissionStudents",formInfo)

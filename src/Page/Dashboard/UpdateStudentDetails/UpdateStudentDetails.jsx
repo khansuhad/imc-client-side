@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../Hock/useAxiosPublic";
+import useStudentDetails from "../../../Hock/useStudentDetails";
 
 
 const UpdateStudentDetails = () => {
   const params = useParams();
   const studentId = params?.studentId ;
+  const {studentDetails} = useStudentDetails(studentId);
 const useAxios = useAxiosPublic();
   const handleForm = (e) =>{
     e.preventDefault();
@@ -12,11 +14,12 @@ const useAxios = useAxiosPublic();
     const name = form.name.value;
     const studentClass = form.studentClass.value;
     const school = form.school.value;
+    const phoneNumber = form.phoneNumber.value;
     const parentsName = form.parentsName.value;
     const parentsPhoneNumber = form.parentsPhoneNumber.value;
     const admissionDate = form.admissionDate.value;
     const message = form.message.value;
-    const formInfo = {name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message}
+    const formInfo = {name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message , phoneNumber}
     console.log(formInfo);
  
     useAxios.patch(`/studentDetails/${studentId}`,formInfo)
@@ -43,6 +46,7 @@ const useAxios = useAxiosPublic();
                 type="text"
                 name="name"
                 required
+                defaultValue={studentDetails?.name}
                 className="block border border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"
               />
             </div>
@@ -56,6 +60,7 @@ const useAxios = useAxiosPublic();
               <input
                 type="text"
       required
+      defaultValue={studentDetails?.studentClass}
                 name="studentClass"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
@@ -72,6 +77,7 @@ const useAxios = useAxiosPublic();
               <input
                 type="text"
            required
+           defaultValue={studentDetails?.school}
                 name="school"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
@@ -85,7 +91,7 @@ const useAxios = useAxiosPublic();
               </label>
               <input
                 type="number"
-          
+                defaultValue={studentDetails?.phoneNumber}
                 name="phoneNumber"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
@@ -102,6 +108,7 @@ const useAxios = useAxiosPublic();
               <input
                 type="text"
            required
+           defaultValue={studentDetails?.parentsName}
                 name="parentsName"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
@@ -115,7 +122,7 @@ const useAxios = useAxiosPublic();
               </label>
               <input
                 type="number"
-          
+                defaultValue={studentDetails?.parentsPhoneNumber}
                 name="parentsPhoneNumber"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
@@ -132,6 +139,7 @@ const useAxios = useAxiosPublic();
               <input
                 type="date"
            required
+           defaultValue={studentDetails?.admissionDate}
                 name="admissionDate"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
@@ -145,7 +153,7 @@ const useAxios = useAxiosPublic();
               </label>
               <input
                 type="number"
-          
+                defaultValue={studentDetails?.batch}
                 name="batch"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
@@ -159,7 +167,7 @@ const useAxios = useAxiosPublic();
             >
               Message
             </label>
-            <textarea  required name="message" cols="30" rows="5" className="block border  border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"></textarea>
+            <textarea  defaultValue={studentDetails?.message} required name="message" cols="30" rows="5" className="block border  border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"></textarea>
           </div>
        
           <div className="w-36 mx-auto border rounded-lg">
