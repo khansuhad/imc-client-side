@@ -1,8 +1,10 @@
+import useAddPayment from "../../../../Hock/useAddPayment";
 
 const STable = () => {
+  const {addPayments} = useAddPayment();
     return (
         <div className="w-[90%] mx-auto">
-                        <table className="table border">
+                        <table className="table border ">
               {/* head */}
               <thead className="md:text-xl font-bold text-white border-2 bg-slate-700 dark:text-white">
                 <tr>
@@ -14,21 +16,23 @@ const STable = () => {
               
                 </tr>
               </thead>
-              <tbody className="bg-white">
-              <tr>
-            <td>
-               1-02-2024
-            </td>
-            <td>
-               March - 2024
-            </td>
-            <td>2000</td>
-            <td>2000</td>
-            <td>Ahmod Ali</td>
-
-          
+              <tbody className="bg-white ">
+            {
+              addPayments?.map(payment =>   <tr  key={payment?._id}>
+                <td>
+                  {payment?.date}
+                </td>
+                <td>
+                 {payment?.transectionDetails}
+                </td>
+                <td>{payment?.collection}</td>
+                <td>{payment?.amount}</td>
+                <td>{payment?.entry}</td>
     
-        </tr>
+              
+        
+            </tr>)
+            }
              
               </tbody>
             </table>
