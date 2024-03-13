@@ -1,12 +1,32 @@
+import useAxiosPublic from "../../../Hock/useAxiosPublic";
 
 
 const Addpayment = () => {
+  const useAxios = useAxiosPublic();
+  const handleForm = (e) =>{
+    e.preventDefault();
+    const form = e.target;
+    const transectionDetails = form.transectionDetails.value;
+    const collection = form.collection.value;
+    const amount = form.amount.value;
+    const date = form.date.value;
+    const entry = form.entry.value;
+    
+    const formInfo = {transectionDetails,collection,amount,date,entry }
+    console.log(formInfo);
+ 
+    useAxios.post("/addpayment",formInfo)
+    .then(res => {
+      console.log(res?.data);
+    })
+
+  }
     return (
         <div>
         <h1 className="text-3xl font-semibold text-center mt-10">Add payment </h1>
         <div className="lg:px-12 px-4 mt-20">
   <div className="md:w-2/3 mx-auto mb-20">
-    <form >
+    <form onSubmit={handleForm}>
       <div className="flex flex-col lg:flex-row gap-8 items-center mb-8">
         <div className="lg:w-1/2 w-full">
           <label
@@ -16,7 +36,7 @@ const Addpayment = () => {
           </label>
           <input
             type="text"
-            name="name"
+            name="transectionDetails"
             required
             className="block border border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"
           />
@@ -31,7 +51,7 @@ const Addpayment = () => {
           <input
             type="text"
   required
-            name="subject"
+            name="amount"
             className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
           />
         </div>
@@ -47,7 +67,7 @@ const Addpayment = () => {
           <input
             type="text"
        required
-            name="email"
+            name="collection"
             className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
           />
         </div>
@@ -61,7 +81,7 @@ const Addpayment = () => {
           <input
             type="date"
       
-            name="phoneNumber"
+            name="date"
             className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
           />
         </div>
@@ -76,7 +96,7 @@ const Addpayment = () => {
         >
           Entry
         </label>
-        <textarea  required name="message" cols="30" rows="5" className="block border  border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"></textarea>
+        <textarea  required name="entry" cols="30" rows="5" className="block border  border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"></textarea>
       </div>
    
       <div className="w-36 mx-auto border rounded-lg">
