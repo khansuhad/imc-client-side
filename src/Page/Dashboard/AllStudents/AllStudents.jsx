@@ -6,8 +6,7 @@ import useAllStudents from "../../../Hock/useAllStudent";
 const AllStudents = () => {
   const {allStudents} = useAllStudents();
   console.log(allStudents);
-    const AllStudents = 10 ;
-    const students = [...Array(AllStudents).keys()];
+
     return (
        <div className="bg-[#EEEEEE]">
          <div className=" w-[95%] mx-auto">
@@ -60,13 +59,13 @@ const AllStudents = () => {
 <hr className="my-10 border-1 border-slate-800 text-xl" />
         <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-5 justify-center">
             {
-                students?.map((student , index) => <Link to="/dashboard/allstudent/suhadahmodkhan" key={index}>
+                allStudents?.map((student) => <Link to={`/dashboard/student/${student._id}`} key={student?._id}>
                            <div className="card lg:w-80 bg-base-100 shadow-xl">
   <figure><img src="https://i.postimg.cc/8z2QBq2P/Whats-App-Image-2023-12-19-at-4-48-51-AM.jpg" alt="Shoes" className="h-44" /></figure>
   <div className="card-body text-center">
-    <h2 className="font-bold text-xl">Suhad ahmod khan {index}</h2>
-    <p>Class : 9</p>
-    <p>Phone Number : 01646556476</p>
+    <h2 className="font-bold text-xl">{student?.name}</h2>
+    <p>Class : {student?.studentClass}</p>
+    <p>Phone Number : {student?.parentsPhoneNumber}</p>
   </div>
 </div>
                 </Link> )

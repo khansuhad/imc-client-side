@@ -39,7 +39,7 @@ const Router = createBrowserRouter([
         element:<DashImg/>
       },
       {
-        path:"/dashboard/updateStudentDetails/suhadahmodkhan",
+        path:"/dashboard/updateStudentDetails/:studentId",
         element:<UpdateStudentDetails/>
       },
       {
@@ -47,7 +47,7 @@ const Router = createBrowserRouter([
         element:<AllStudents/>
       },
       {
-        path:"/dashboard/allstudent/suhadahmodkhan",
+        path:"/dashboard/student/:studentId",
         element:<StudentDetails/>
       }
     ]

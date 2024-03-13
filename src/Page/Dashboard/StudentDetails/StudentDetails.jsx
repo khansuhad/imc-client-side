@@ -1,20 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import STable from "./Table/STable";
+import useStudentDetails from "../../../Hock/useStudentDetails";
 
 const StudentDetails = () => {
+    const params = useParams();
+    const studentId = params?.studentId ;
+    console.log(studentId);
+   const {studentDetails} = useStudentDetails(studentId);
+   
     return (
         <div>
-                   <h1 className="text-3xl font-semibold text-center my-20">Suahd ahmod khan&rsquo;s Information </h1>
+                   <h1 className="text-3xl font-semibold text-center my-20">{studentDetails?.name}&rsquo;s Information </h1>
             <div className="lg:h-30vh flex justify-between w-[90%]   mx-auto items-center ">
                 <div >
-                    <h1 className="text-xl font-semibold my-2">Name : Suhad Ahmod khan</h1>
+                    <h1 className="text-xl font-semibold my-2">Name : {studentDetails?.name}</h1>
                     <h1 className="text-xl font-medium  my-2">Id : 243025</h1>
-                    <h1 className="text-xl font-medium  my-2">Phone Number : 01646556476 </h1>
-                    <h1 className="text-xl font-medium  my-2">Class  : Nine 2024</h1>
-                    <h1 className="text-xl font-medium  my-2">Parent&rsquo;s Name  : Abdul hafiz khan</h1>
-                    <h1 className="text-xl font-medium  my-2">Admission Date  : 12-06-2024 </h1>
+                    <h1 className="text-xl font-medium  my-2">Phone Number : {studentDetails?.parentsPhoneNumber} </h1>
+                    <h1 className="text-xl font-medium  my-2">Class  : {studentDetails?.studentClass} {studentDetails?.batch}</h1>
+                    <h1 className="text-xl font-medium  my-2">Parent&rsquo;s Name  : {studentDetails?.parentsName}</h1>
+                    <h1 className="text-xl font-medium  my-2">Admission Date  : {studentDetails?.admissionDate} </h1>
                     <div className="flex gap-5 my-2 ">
-                    <Link to="/dashboard/updateStudentDetails/suhadahmodkhan" className="btn btn-primary">Edit Profile</Link>
+                    <Link to={`/dashboard/updateStudentDetails/${studentDetails?._id}`} className="btn btn-primary">Edit Profile</Link>
                     <Link to="/dashboard/addpayment/suhadahmodkhan" className="btn btn-primary">Add Payment</Link>
                 </div>
                 </div>
