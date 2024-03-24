@@ -6,6 +6,7 @@ const useAxios = useAxiosPublic();
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
+    const id = form.id.value;
     const studentClass = form.studentClass.value;
     const school = form.school.value;
     const phoneNumber = form.phoneNumber.value;
@@ -13,7 +14,7 @@ const useAxios = useAxiosPublic();
     const parentsPhoneNumber = form.parentsPhoneNumber.value;
     const admissionDate = form.admissionDate.value;
     const message = form.message.value;
-    const formInfo = {name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message , phoneNumber}
+    const formInfo = {id,name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message , phoneNumber}
     console.log(formInfo);
  
     useAxios.post("/admissionStudents",formInfo)
@@ -34,11 +35,11 @@ const useAxios = useAxiosPublic();
               <label
                 className="text-base text-black w-full"
               >
-               Name
+            ID
               </label>
               <input
-                type="text"
-                name="name"
+                type="number"
+                name="id"
                 required
                 className="block border border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"
               />
@@ -48,12 +49,12 @@ const useAxios = useAxiosPublic();
       
                 className="text-base text-black w-full"
               >
-                Class
+                Name
               </label>
               <input
                 type="text"
       required
-                name="studentClass"
+                name="name"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
@@ -138,12 +139,12 @@ const useAxios = useAxiosPublic();
               
                 className="text-base text-black w-full"
               >
-              Batch
+             Class
               </label>
               <input
                 type="number"
           
-                name="batch"
+                name="studentClass"
                 className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
               />
             </div>
