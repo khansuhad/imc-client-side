@@ -8,7 +8,7 @@ const useStudentFilter = (filter) => {
     
     useEffect(() => {
     useAxios.get("")
-    },[])
+    },[useAxios])
   
 };
 
