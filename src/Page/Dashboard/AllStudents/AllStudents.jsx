@@ -42,7 +42,7 @@ setFilter(filter);
               <label
                 className="text-xl text-black mr-2 w-20"
               >
-              Name:
+              NAME:
               </label>
               <input
                 type="text"
@@ -55,7 +55,7 @@ setFilter(filter);
               <label
                 className="text-xl text-black mr-2 w-20"
               >
-               Class:
+               CLASS:
               </label>
               <input
                 type="text"
