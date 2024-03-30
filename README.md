@@ -1,5 +1,4 @@
 # Infinity Math Center
-# happy coding
 
 
 - [Live link](https://infinity-math-center.web.app/)
