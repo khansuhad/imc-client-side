@@ -6,7 +6,7 @@ import useStudentFilter from "../../../Hock/useStudentFilter";
 
 
 const AllStudents = () => {
-  const {allStudents} = useAllStudents();
+  // const {allStudents} = useAllStudents();
   const [filter, setFilter] = useState({id: '', name: '', studentClass: '' });
   // console.log(filter);
   const { students, isLoadingStudents, isPendingStudents, refetchStudents } = useStudentFilter({ filter });
@@ -18,7 +18,9 @@ const AllStudents = () => {
   const handleFilter = () => {
     refetchStudents(); // Refetch data with updated filter parameters
   };
-
+if(isLoadingStudents){
+  return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-ring loading-lg"></span></div>
+}
     return (
        <div className="bg-[#EEEEEE]">
          <div className=" w-[95%] mx-auto">
@@ -72,32 +74,28 @@ const AllStudents = () => {
 </div>
 
 <hr className="my-10 border-1 border-slate-800 text-xl" />
-        <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-5 justify-center">
-            {
-                students?.length === 0 ? allStudents?.map((student) => <Link to={`/dashboard/student/${student._id}`} key={student?._id}>
-                           <div className="card lg:w-80 bg-base-100 shadow-xl">
-  <figure><img src="https://i.postimg.cc/d1r3c0FG/Whats-App-Image-2023-12-19-at-4-48-51-AM.jpg" alt="Shoes" className="h-44" /></figure>
-  <div className="card-body text-center">
-    <h2 className="font-bold text-xl">{student?.name}</h2>
-    <p>Class : {student?.studentClass}</p>
-    <p>Phone Number : {student?.parentsPhoneNumber}</p>
-  </div>
-</div>
-                </Link> ):
-                students?.map((student) => <Link to={`/dashboard/student/${student._id}`} key={student?._id}>
-                <div className="card lg:w-80 bg-base-100 shadow-xl">
+      {
+          <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-5 justify-center">
+          {
+        students?.map((student) => <Link to={`/dashboard/student/${student?._id}`} key={student?._id}>
+                         <div className="card lg:w-80 bg-base-100 shadow-xl">
 <figure><img src="https://i.postimg.cc/d1r3c0FG/Whats-App-Image-2023-12-19-at-4-48-51-AM.jpg" alt="Shoes" className="h-44" /></figure>
 <div className="card-body text-center">
-<h2 className="font-bold text-xl">{student?.name}</h2>
-<p>Class : {student?.studentClass}</p>
-<p>Phone Number : {student?.parentsPhoneNumber}</p>
+  <h2 className="font-bold text-xl">{student?.name}</h2>
+  <p>Class : {student?.studentClass}</p>
+  <p>Phone Number : {student?.parentsPhoneNumber}</p>
 </div>
 </div>
-     </Link> )
-            }
-        </div>
-
-  
+              </Link> ) 
+             
+          }
+         
+      </div>
+      
+        }
+   {
+         students?.length === 0      && <h1 className="text-center flex justify-center items-center font-semibold text-4xl h-[60vh]">Data is empty</h1>
+      } 
         </div>
        </div>
     );
