@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import STable from "./Table/STable";
-import useStudentDetails from "../../../Hock/useStudentDetails";
+import useStudentDetails from "../../../../Hock/useStudentDetails";
 
 const StudentDetails = () => {
     const params = useParams();

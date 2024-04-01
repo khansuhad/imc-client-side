@@ -1,4 +1,4 @@
-import useAxiosPublic from "../../../Hock/useAxiosPublic";
+import useAxiosPublic from "../../../../Hock/useAxiosPublic";
 
 const AdmissionForm = () => {
 const useAxios = useAxiosPublic();

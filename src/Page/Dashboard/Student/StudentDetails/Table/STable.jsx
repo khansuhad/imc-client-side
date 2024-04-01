@@ -1,4 +1,4 @@
-import useAddPayment from "../../../../Hock/useAddPayment";
+import useAddPayment from "../../../../../Hock/useAddPayment";
 
 const STable = () => {
   const {addPayments} = useAddPayment();
@@ -16,9 +16,9 @@ const STable = () => {
               
                 </tr>
               </thead>
-              <tbody className="bg-white ">
+              <tbody className=" ">
             {
-              addPayments?.map(payment =>   <tr  key={payment?._id}>
+              addPayments?.map((payment , index) =>   <tr className={` ${index % 2 ==! 0 ?  'bg-gray-100' : 'bg-white'} `} key={payment?._id}>
                 <td>
                   {payment?.date}
                 </td>

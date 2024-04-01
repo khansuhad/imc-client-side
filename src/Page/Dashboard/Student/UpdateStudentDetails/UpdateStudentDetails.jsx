@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import useAxiosPublic from "../../../Hock/useAxiosPublic";
-import useStudentDetails from "../../../Hock/useStudentDetails";
+import useAxiosPublic from "../../../../Hock/useAxiosPublic";
+import useStudentDetails from "../../../../Hock/useStudentDetails";
 
 
 const UpdateStudentDetails = () => {

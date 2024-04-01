@@ -1,42 +1,34 @@
-import useAxiosPublic from "../../../Hock/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
+const CreateTest = () => {
+    const navigate = useNavigate();
+    const handleCreateTest = (e) =>{
+        e.preventDefault();
+        const form = e.target ;
+        const testName = form.testName.value ;
+        const date = form.date.value ;
+        const subjectName = form.subjectName.value ;
+        const testClass = form.testClass.value ;
+const testInfo = 'testName=' + testName  +'&subjectName=' + subjectName + '&testClass=' +testClass +'&date=' + date ;
 
-const Addpayment = () => {
-  const useAxios = useAxiosPublic();
-  const handleForm = (e) =>{
-    e.preventDefault();
-    const form = e.target;
-    const transectionDetails = form.transectionDetails.value;
-    const collection = form.collection.value;
-    const amount = form.amount.value;
-    const date = form.date.value;
-    const entry = form.entry.value;
-    
-    const formInfo = {transectionDetails,collection,amount,date,entry }
-    console.log(formInfo);
- 
-    useAxios.post("/addpayment",formInfo)
-    .then(res => {
-      console.log(res?.data);
-    })
-
-  }
+        navigate(`/dashboard/addMark/${testInfo}`)
+    }
     return (
         <div>
-        <h1 className="text-3xl font-semibold text-center mt-10">Add payment </h1>
+        <h1 className="text-3xl font-semibold text-center mt-10">Create Test </h1>
         <div className="lg:px-12 px-4 mt-20">
   <div className="md:w-2/3 mx-auto mb-20">
-    <form onSubmit={handleForm}>
+    <form onSubmit={handleCreateTest}>
       <div className="flex flex-col lg:flex-row gap-8 items-center mb-8">
         <div className="lg:w-1/2 w-full">
           <label
             className="text-base text-black w-full"
           >
-           Transection details
+        Test Name
           </label>
           <input
             type="text"
-            name="transectionDetails"
+            name="testName"
             required
             className="block border border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"
           />
@@ -46,12 +38,12 @@ const Addpayment = () => {
   
             className="text-base text-black w-full"
           >
-            Total amount
+           Subject Name
           </label>
           <input
             type="text"
   required
-            name="amount"
+            name="subjectName"
             className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
           />
         </div>
@@ -62,12 +54,12 @@ const Addpayment = () => {
           
             className="text-base text-black w-full"
           >
-          Collection
+         Class
           </label>
           <input
-            type="text"
+            type="number"
        required
-            name="collection"
+            name="testClass"
             className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
           />
         </div>
@@ -76,7 +68,7 @@ const Addpayment = () => {
           
             className="text-base text-black w-full"
           >
-            date
+        Date
           </label>
           <input
             type="date"
@@ -85,18 +77,6 @@ const Addpayment = () => {
             className="block border border-[#5E1675] px-2 rounded-lg py-2 mt-2 w-full"
           />
         </div>
-      </div>
-    
-    
-
-      <div className="w-full mb-8">
-        <label
-       
-          className="text-base text-black w-full"
-        >
-          Entry
-        </label>
-        <textarea  required name="entry" cols="30" rows="5" className="block border  border-[#5E1675] rounded-lg py-2 px-2 mt-2 w-full"></textarea>
       </div>
    
       <div className="w-36 mx-auto border rounded-lg">
@@ -111,4 +91,4 @@ const Addpayment = () => {
     );
 };
 
-export default Addpayment;
+export default CreateTest;

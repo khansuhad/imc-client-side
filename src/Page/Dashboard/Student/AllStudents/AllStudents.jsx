@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
-import useAllStudents from "../../../Hock/useAllStudent";
+
 import { useState } from "react";
-import useStudentFilter from "../../../Hock/useStudentFilter";
+import useStudentFilter from "../../../../Hock/useStudentFilter";
 
 
 
 const AllStudents = () => {
-  // const {allStudents} = useAllStudents();
+
   const [filter, setFilter] = useState({id: '', name: '', studentClass: '' });
-  // console.log(filter);
-  const { students, isLoadingStudents, isPendingStudents, refetchStudents } = useStudentFilter({ filter });
+
+  const { students, isLoadingStudents,  refetchStudents } = useStudentFilter({ filter });
   console.log(students);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFilter({ ...filter, [name]: value });
   };
   const handleFilter = () => {
-    refetchStudents(); // Refetch data with updated filter parameters
+    refetchStudents();
   };
 if(isLoadingStudents){
   return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-ring loading-lg"></span></div>

@@ -25,6 +25,24 @@ const AdminNavItem = () => {
           All Student
        
         </NavLink>
+        <NavLink
+          to="/dashboard/createTest"
+   className="font-semibold lg:text-2xl"
+          
+        >
+          <MdDashboard />
+          Create Test
+       
+        </NavLink>
+        <NavLink
+          to="/dashboard/allTest"
+   className="font-semibold lg:text-2xl"
+          
+        >
+          <MdDashboard />
+         AllTest
+       
+        </NavLink>
     
       
       

@@ -2,13 +2,16 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../Page/Home/Home";
 import MainLayout from "../Layout/MainLayout/MainLayout";
 import Dashboard from "../Page/Dashboard/Dashboard";
-import AdmissionForm from "../Page/Dashboard/AdmissionForm/AdmissionForm";
-import AllStudents from "../Page/Dashboard/AllStudents/AllStudents";
-import StudentDetails from "../Page/Dashboard/StudentDetails/StudentDetails";
 import DashImg from "../Page/Dashboard/DashImg";
-import UpdateStudentDetails from "../Page/Dashboard/UpdateStudentDetails/UpdateStudentDetails";
-import Addpayment from "../Page/Dashboard/AddPayment/Addpayment";
 import Login from "../Page/Authentication/Login/Login";
+import AdmissionForm from "../Page/Dashboard/Student/AdmissionForm/AdmissionForm";
+import Addpayment from "../Page/Dashboard/Student/AddPayment/Addpayment";
+import UpdateStudentDetails from "../Page/Dashboard/Student/UpdateStudentDetails/UpdateStudentDetails";
+import AllStudents from "../Page/Dashboard/Student/AllStudents/AllStudents";
+import StudentDetails from "../Page/Dashboard/Student/StudentDetails/StudentDetails";
+import CreateTest from "../Page/Dashboard/Result/CreateTest/CreateTest";
+import AddMark from "../Page/Dashboard/Result/AddMark/AddMark";
+import AllTest from "../Page/Dashboard/Result/AllTest/AllTest";
 
 
 const Router = createBrowserRouter([
@@ -49,7 +52,19 @@ const Router = createBrowserRouter([
       {
         path:"/dashboard/student/:studentId",
         element:<StudentDetails/>
-      }
+      },
+      {
+        path:"/dashboard/createTest",
+        element:<CreateTest/>
+      },
+      {
+        path:"/dashboard/addMark/:testDetails",
+        element:<AddMark/>
+      },
+      {
+        path:"/dashboard/allTest",
+        element:<AllTest/>
+      },
     ]
     },
     {
