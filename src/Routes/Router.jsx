@@ -10,8 +10,8 @@ import UpdateStudentDetails from "../Page/Dashboard/Student/UpdateStudentDetails
 import AllStudents from "../Page/Dashboard/Student/AllStudents/AllStudents";
 import StudentDetails from "../Page/Dashboard/Student/StudentDetails/StudentDetails";
 import CreateTest from "../Page/Dashboard/Result/CreateTest/CreateTest";
-import AddMark from "../Page/Dashboard/Result/AddMark/AddMark";
 import AllTest from "../Page/Dashboard/Result/AllTest/AllTest";
+import AddMark from "../Page/Dashboard/Result/AddMark/AddMark";
 
 
 const Router = createBrowserRouter([
@@ -57,14 +57,16 @@ const Router = createBrowserRouter([
         path:"/dashboard/createTest",
         element:<CreateTest/>
       },
-      {
-        path:"/dashboard/addMark/:testDetails",
-        element:<AddMark/>
-      },
+     
       {
         path:"/dashboard/allTest",
         element:<AllTest/>
       },
+      {
+        path:"/dashboard/allTests/:id",
+        element:<AddMark/>,
+        loader : ({params}) => fetch(`http://localhost:5000/createTests/${params?.id}`)
+      }
     ]
     },
     {

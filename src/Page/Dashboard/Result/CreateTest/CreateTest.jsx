@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../../../Hock/useAxiosPublic";
+
 
 const CreateTest = () => {
-    const navigate = useNavigate();
+    const useAxios = useAxiosPublic();
     const handleCreateTest = (e) =>{
         e.preventDefault();
         const form = e.target ;
@@ -9,9 +10,13 @@ const CreateTest = () => {
         const date = form.date.value ;
         const subjectName = form.subjectName.value ;
         const testClass = form.testClass.value ;
-const testInfo = 'testName=' + testName  +'&subjectName=' + subjectName + '&testClass=' +testClass +'&date=' + date ;
+const testInfo = { testClass , testName , date , subjectName} ;
 
-        navigate(`/dashboard/addMark/${testInfo}`)
+      useAxios.post("/createTests" , testInfo)
+      .then(res => {
+        console.log(res?.data);
+      })
+       
     }
     return (
         <div>
