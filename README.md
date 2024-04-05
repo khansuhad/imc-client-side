@@ -1,5 +1,5 @@
 # Infinity Math Center
-# coding
+
 
 - [Live link](https://infinity-math-center.web.app/)
 - [Server link link](https://imc-server-side.vercel.app)

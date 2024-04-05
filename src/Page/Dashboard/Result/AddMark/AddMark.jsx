@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
-import useAllTests from "../../../../Hock/useAllTests";
+import {  useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import useStudentClassFilter from "../../../../Hock/useStudentClassFilter";
 
 
