@@ -1,3 +1,4 @@
+import ChangedDateValue from "../../../../Component/JavaScript/ChangedDateValue1";
 import useAxiosPublic from "../../../../Hock/useAxiosPublic";
 
 const AdmissionForm = () => {
@@ -13,8 +14,9 @@ const useAxios = useAxiosPublic();
     const parentsName = form.parentsName.value;
     const parentsPhoneNumber = form.parentsPhoneNumber.value;
     const admissionDate = form.admissionDate.value;
+    const MonthDate = ChangedDateValue(admissionDate)
     const message = form.message.value;
-    const formInfo = {id,name, studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message , phoneNumber}
+    const formInfo = {id,name,  dueMonth : [MonthDate], studentClass,school,parentsName, parentsPhoneNumber, admissionDate, message , phoneNumber}
     console.log(formInfo);
  
     useAxios.post("/admissionStudents",formInfo)

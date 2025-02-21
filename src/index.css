@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for the SweetAlert2 buttons */
+.custom-confirm-btn {
+    background-color: #FF6F1F; /* yellowish-orange background */
+    border-color: #FF9E4A;
+    /* darker orange border */
+    color: white; /* white text */
+  }
+  
+  .custom-cancel-btn {
+     /* lighter orange border */
+     background-color: #FF9E4A; /* orange background */
+     border-color: #FF6F1F;
+    color: white; /* white text */
+  }
+  
+  .custom-confirm-btn:hover {
+  /* darker orange on hover */
+  background-color: #FF9E4A;
+  }
+  
+  .custom-cancel-btn:hover {
+    
+    background-color: #FF6F1F; /* lighter orange on hover */
+  }
+  .custom-confirm-btn, .custom-cancel-btn {
+    opacity: 1 !important; /* Ensure opacity is 1 */
+    pointer-events: auto !important; /* Enable interaction */
+    cursor: pointer !important; /* Ensure the cursor shows as pointer on hover */
+  }

@@ -1,8 +1,17 @@
+import { useState } from "react";
 import useAxiosPublic from "../../../../Hock/useAxiosPublic";
+import useAllTests from "../../../../Hock/useAllTests";
 
 
 const CreateTest = () => {
     const useAxios = useAxiosPublic();
+    const [lastData , setLastData] = useState({})
+    console.log(lastData);
+    const [allStudentData , setAllStudentData] = useState({})
+    console.log(allStudentData);
+    const [marksData , setMarksData] = useState([])
+    console.log(marksData);
+    const {test ,refetchtests} = useAllTests()
     const handleCreateTest = (e) =>{
         e.preventDefault();
         const form = e.target ;
@@ -11,11 +20,42 @@ const CreateTest = () => {
         const subjectName = form.subjectName.value ;
         const testClass = form.testClass.value ;
 const testInfo = { testClass , testName , date , subjectName} ;
-
+      console.log(testInfo);
       useAxios.post("/createTests" , testInfo)
       .then(res => {
+        refetchtests();
         console.log(res?.data);
+        useAxios.get("/tests/lastindex")
+        .then(res => {  
+          console.log(res?.data);
+          setLastData(res?.data)
+          useAxios.get(`/createTests/allStudents/${lastData?._id}`)
+          .then(res=> {
+            console.log(res?.data);
+              setAllStudentData(res?.data)
+              let addMarks = []
+              console.log(addMarks);
+              for(var i = 0 ; i < allStudentData?.students?.length ; i++) {
+                    const info = {
+                      studentId : allStudentData?.students[i]?._id,
+                      mark : 0
+    
+                    };
+                    addMarks.push(info)
+                    
+              }
+                setMarksData(addMarks)
+                console.log(marksData);
+                useAxios.post("/test-marks", {marksData : marksData , testId : allStudentData?.testInfo?._id,})
+                .then(res => {
+                  console.log(res?.data);
+                })
+          })
+        })
       })
+
+   
+     
        
     }
     return (

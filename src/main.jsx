@@ -12,12 +12,14 @@ import {
 const queryClient = new QueryClient()
 import Router from './Routes/Router.jsx';
 import AuthProvider from './AuthProvider/AuthProvidder.jsx';
+import { store } from './Redux/Store/Store.jsx';
+import { Provider } from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
   <AuthProvider>
-  <RouterProvider router={Router} />
+  <Provider store={store}><RouterProvider router={Router} /></Provider>
   </AuthProvider>
   </QueryClientProvider>
   </React.StrictMode>,

@@ -17,9 +17,11 @@ const Navbar = () => {
      <Link className="block text-2xl font-semibold text-[#5E1675] hover:text-gray-400 py-2 px-4 cursor-pointer">
             Home
             </Link>
-            <Link to="/dashboard" className="block text-2xl  font-semibold lg:text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
+           {
+            user &&  <Link to="/dashboard" className="block text-2xl  font-semibold lg:text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
             Dashboard
             </Link>
+           }
             <Link  className="block text-2xl font-semibold text-[#5E1675]  hover:text-gray-400 py-2 px-4 cursor-pointer">
            Feedback
             </Link>

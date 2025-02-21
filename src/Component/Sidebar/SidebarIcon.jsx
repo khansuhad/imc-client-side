@@ -1,6 +1,6 @@
 const SidebarIcon = () => {
   return (
-    <label htmlFor="my-drawer-2" className="btn btn-ghost lg:hidden mr-auto">
+    <label htmlFor="my-drawer-2" className="btn btn-black lg:hidden mr-auto">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"

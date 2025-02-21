@@ -3,9 +3,13 @@ import Navbar from "../../Component/Navbar/Navbar";
 
 
 
+
+
 const MainLayout = () => {
+     
     return (
         <div>
+
             <Navbar/>
             <Outlet/>
         </div>

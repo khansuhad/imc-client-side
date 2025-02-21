@@ -21,7 +21,7 @@ const StudentDetails = () => {
                     <h1 className="text-xl font-medium  my-2">Admission Date  : {studentDetails?.admissionDate} </h1>
                     <div className="flex gap-5 my-2 ">
                     <Link to={`/dashboard/updateStudentDetails/${studentDetails?._id}`} className="btn btn-primary">Edit Profile</Link>
-                    <Link to="/dashboard/addpayment/suhadahmodkhan" className="btn btn-primary">Add Payment</Link>
+                    <Link to={`/dashboard/addpayment/${studentDetails?._id}`} className="btn btn-primary">Add Payment</Link>
                 </div>
                 </div>
              

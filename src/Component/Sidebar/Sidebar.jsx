@@ -1,14 +1,23 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import SidebarIcon from "./SidebarIcon";
 import AdminNavItem from "./AdminNavItem";
+import { useEffect, useRef } from "react";
 
 
 
 const Sidebar = () => {
+  const drawerRef = useRef(null); // Reference for the drawer toggle
+  const location = useLocation(); // Access the current path
 
+  // Close the drawer whenever the path changes
+  useEffect(() => {
+    if (drawerRef.current) {
+      drawerRef.current.checked = false; // Uncheck the drawer toggle
+    }
+  }, [location]);
   return (
     <div className="drawer lg:drawer-open">
-      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <input id="my-drawer-2" ref={drawerRef} type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col text-sixthColor">
         {/* Page content here */}
 
@@ -26,7 +35,7 @@ const Sidebar = () => {
         ></label>
         <ul className="menu py-10 p-4 w-60 md:w-80 min-h-full  bg-[#FFD23F] text-black">
           {/* Sidebar content here */}
-        <div className="mb-10"><Link to="/" className=" border-2 rounded cursor-pointer  border-black lg:text-xl bg-transparent  font-semibold  py-2 px-5"> Infinity Match Center</Link></div>
+        <div className="mb-10"><Link to="/" className=" border-2 rounded cursor-pointer  border-black lg:text-xl bg-transparent  font-semibold  py-2 px-5"> Infinity Math Center</Link></div>
          <AdminNavItem /> 
           {/* common NavLink  */}
           <li className="mt-auto">

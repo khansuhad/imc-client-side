@@ -28,7 +28,7 @@ const Login = () => {
               });
                 e.target.reset();
             console.log(res.user)
-            navigate('/');
+            navigate('/dashboard');
            
         })
         .catch(error => {
@@ -75,10 +75,7 @@ const Login = () => {
       <div className=" border-t-8 rounded border-indigo-600 bg-white p-12 shadow-2xl w-96 h-1/2 ">
         <h1 className="font-bold text-center block text-2xl">Log In</h1>
 
-        <div className="flex justify-center gap-5 my-5">
-            <button className="btn px-10" onClick={handleGoogle}>Google</button>
-           
-            </div>
+        
         <div className="grid grid-cols-3 items-center justify-center">
         <hr /><h1 className="text-center">OR</h1><hr />
         </div>
