@@ -90,7 +90,7 @@ const TransectionList = () => {
                         {transections.map((data, index) => (
                             <tr className="text-black  bg-white shadow-custom-backend rounded-lg my-10 " key={index}>
                                 <td className={`lg:text-xl py-5 text-center ${data?.registrationNo === "expences" && "bg-red-600  text-white text-center"}`}>{data?.registrationNo}</td>
-                                <td className="lg:text-xl py-5">{data.name}</td>
+                                <td className="lg:text-xl py-5">{data.studentNickname}</td>
                                 <td className="lg:text-xl py-5">{data.batch}</td>
                                 <td className="lg:text-xl py-5">{data.category}</td>
                                 <td className="lg:text-xl py-5">{moment(data.date).format("DD MMM YYYY")}</td>

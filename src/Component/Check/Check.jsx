@@ -1,30 +1,51 @@
-import axios from 'axios';
-
+import React from "react";
+import { useForm } from "react-hook-form";
+import InputField from "../ReuseableInput/ReuseableInput"
 
 const Check = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const sendSMS = async () => {
-    try {
-      const greenwebsms = new URLSearchParams();
-      greenwebsms.append('token', '1196418472917392780491ebff42bd422c43a2fa2cc3d55be3c15');
-      greenwebsms.append('to', '+8801646556476');
-      greenwebsms.append('message', 'test sms');
-    const response = await  axios.post('https://api.bdbulksms.net/api.php', greenwebsms).then(response => {
-        console.log(response.data);
-      });
-  
-      console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error sending SMS:", error.response ? error.response.data : error.message);
-    }
+  const onSubmit = (data) => {
+    console.log(data);
   };
-  
 
-  
   return (
-<div>
-  <button onClick={sendSMS}>hi</button>
-</div>
+    <form onSubmit={handleSubmit(onSubmit)} className="p-4">
+      <InputField
+        name="username"
+        control={control}
+        className="bg-red-700 text-red-400"
+        label="Username"
+        placeholder="Enter your username"
+        rules={{ required: "Username is required" }}
+      />
+
+      <InputField
+        name="email"
+        control={control}
+        label="Email"
+        type="email"
+        placeholder="Enter your email"
+        rules={{
+          required: "Email is required",
+          pattern: {
+            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            message: "Invalid password address",
+          },
+        }}
+      />
+
+      <button
+        type="submit"
+        className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+      >
+        Submit
+      </button>
+    </form>
   );
 };
 

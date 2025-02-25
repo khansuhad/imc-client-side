@@ -112,7 +112,7 @@ const useAXios = useAxiosPublic()
             }}>Attendance Record</a></li>
          
             <li><Link to={`/dashboard/student-payment-history/${data?.email}`}>Payment Hisroty</Link></li>
-            <li><Link to={`/dashboard/feesReceive?_id=${data?._id}`}>Payment</Link></li>
+            <li><Link to={`/dashboard/fees-entry?_id=${data?._id}`}>Payment</Link></li>
             <li>
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
         {/* <button  onClick={()=> handleCourseCompleted(data?._id)}>Course Completed</button> */}

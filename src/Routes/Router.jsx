@@ -29,6 +29,7 @@ import SmsHistory from "../Page/Dashboard/SMS/SmsHistroy/SmsHistroy";
 import PrintCurrentStudent from "../Page/Dashboard/Admission/PrintCurrentStudent/PrintCurrentStudent";
 import ListOfClasses from "../Page/Dashboard/BatchInfo/ListOfClass/ListOfClass";
 import ClassWiseBatches from "../Page/Dashboard/BatchInfo/ClassWiseBatch/ClassWiseBatch";
+import BulkSms from "../Page/Dashboard/SMS/BulkSms/BulkSms";
 
 
 const Router = createBrowserRouter([
@@ -82,6 +83,10 @@ const Router = createBrowserRouter([
       {
         path:"/dashboard/dues-alert",
         element:<DuesAlert/>
+      },
+      {
+        path:"/dashboard/bulk-sms",
+        element:<BulkSms/>
       },
       {
         path:"/dashboard/sms-history",

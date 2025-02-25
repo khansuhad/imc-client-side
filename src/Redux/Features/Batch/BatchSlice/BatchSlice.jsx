@@ -31,6 +31,14 @@ export const fetchClassBatches = createAsyncThunk(
     return response.data;
   }
 );
+export const fetchClassStudents = createAsyncThunk(
+  "class-students/fetch",
+  async ({data ,axiosInstance} ) => {
+    const response = await axiosInstance.get(`/class-students?studentClass=${data?.searchTerm}`);
+    console.log(response);
+    return response.data;
+  }
+);
 export const fetchDuesAlert = createAsyncThunk(
   "dues-alert/fetch",
   async ({data ,axiosInstance} ) => {
@@ -50,6 +58,7 @@ const batchesSlice = createSlice({
     status: "idle",
     classBatches : [],
     duesAlert : [],
+    classStudents : []
 
   },
   reducers: {},
@@ -107,6 +116,17 @@ const batchesSlice = createSlice({
         state.duesAlert = action.payload;
       })
       .addCase(fetchDuesAlert.rejected, (state) => {
+        state.status = "failed";
+      });
+    builder
+      .addCase(fetchClassStudents.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchClassStudents.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.classStudents = action.payload;
+      })
+      .addCase(fetchClassStudents.rejected, (state) => {
         state.status = "failed";
       });
   },

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import ReactSelect from "react-select";
 
@@ -10,7 +10,7 @@ import moment from "moment";
 import { FaRegSave } from "react-icons/fa";
 import useAxiosPublic from "../../../../Hock/useAxiosPublic";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBatchDetails, fetchBatches, fetchBatchesStudents, fetchClassBatches } from "../../../../Redux/Features/Batch/BatchSlice/BatchSlice";
+import { fetchBatchDetails, fetchBatches,  fetchClassStudents } from "../../../../Redux/Features/Batch/BatchSlice/BatchSlice";
 import { fetchStudentDetails } from "../../../../Redux/Features/Admissions/AdmissionsSlice/AdmissionsSlice";
 import { fetchTransectionsCount } from "../../../../Redux/Features/Fees/TransectionsSlice/TransectionsSlice";
 import axios from "axios";
@@ -34,49 +34,55 @@ const TransectionEntry = () => {
 
   const useAXios = useAxiosPublic();
   const dispatch = useDispatch()
-  const {batches,batchesStudents,batchDetails} = useSelector((state) => state.batches)
+  const {batchDetails} = useSelector((state) => state.batches)
   const {transectionCount} = useSelector((state) => state.transections)
   const {studentInfo} = useSelector((state) => state.admissions)
-
-  const navigate = useNavigate();
-  const updateProfileSuccessToast = () =>
-    toast.success("created successfully");
-  const updateProfileErrorToast = () => toast.error("Profile can't update");
   const [monthlyFee,setMonthlyFee] = useState("Monthly Fee")
   const [loadingButton , setLoadingButton] = useState(false)
-
-  const [income , setIncome] = useState(true)
   const [studentOptions , setStudentOptions] = useState([])
-  const [batchSelected, setBatchSelected] = useState("")
   const [duesMonthOptions, setDuesMonthOptions] = useState([])
   const [duesMonthlyFeeOptions, setDuesMonthlyFeeOptions] = useState([])
   const [totalDue, setTotalDue] = useState(0)
   const [monthDue,setMonthDue] = useState(0)
   const [monthFeeDue,setMonthFeeDue] = useState(0)
   const axiosInstance = useAxiosPublic()
-
-  const {classBatches} = useSelector((state) => state.batches)
-
- const handleClassBatches = (studentClass) => {
-    console.log(studentClass);
-    dispatch(fetchClassBatches({data: {searchTerm : studentClass}, axiosInstance : axiosInstance}))
+  const [studentSelected, setStudentSelected] = useState(false)
+  const {classStudents} = useSelector((state) => state.batches)
+  console.log(classStudents);
+  const queryParams = new URLSearchParams(window.location.search);
+  const _id = queryParams.get('_id');
+ const handleclassStudents = (studentClass) => {
+    dispatch(fetchClassStudents({data: {searchTerm : studentClass}, axiosInstance : axiosInstance}))
+    setStudentSelectedOption("")
+    setDuesMonthSelectedOption("")
+    setDuesMonthlyFeeSelectedOption("")
+    setDuesMonthlyFeeOptions([])
+    setDuesMonthOptions([])
  }
  useEffect(() => {
-  dispatch(fetchClassBatches({data: {searchTerm : "সপ্তম"}, axiosInstance : axiosInstance}))
- },[])
-  useEffect(() => {
+  
+  dispatch(fetchClassStudents({data: {searchTerm : "সপ্তম"}, axiosInstance : axiosInstance}))
+ },[axiosInstance,dispatch])
+ useEffect(() =>{
+  if(_id){
+    dispatch(fetchStudentDetails({data: {searchTerm : _id}, axiosInstance : useAXios}))
+    setStudentSelectedOption({ value : `${studentInfo?._id}` , label : `${studentInfo?.registrationNo}/${studentInfo?.name} `})
+    setStudentSelected(true)
+  }
+ },[_id,dispatch,studentInfo?._id,studentInfo?.name,studentInfo?.registrationNo,useAXios])
+  useEffect(()  => {
  
           const totalDue = studentInfo?.duesMonth?.reduce((prev,cur) => prev + cur.fee ,0)
           setMonthDue(totalDue)
-          const totalMonthlyFeeDue = studentInfo?.duesBatchMonthlyFee?.reduce((prev,cur) => prev + batchDetails?.batchMonthlyFee ,0)
+          const totalMonthlyFeeDue = studentInfo?.duesBatchMonthlyFee?.reduce((prev,cur) => prev + cur?.fee ,0)
           setMonthFeeDue(totalMonthlyFeeDue)
           setTotalDue(totalDue + totalMonthlyFeeDue)
     
           const student = []
-          if(batchesStudents.length > 0) {
-            for(let i = 0 ; i <= batchesStudents.length - 1 ; i++)
+          if(classStudents?.length > 0) {
+            for(let i = 0 ; i <= classStudents.length - 1 ; i++)
           {
-            let batch = { value : `${batchesStudents[i]?._id}` , label : `${batchesStudents[i]?.registrationNo}/${batchesStudents[i]?.name}/${batchesStudents[i]?.mobile} `}
+            let batch = { value : `${classStudents[i]?._id}` , label : `${classStudents[i]?.registrationNo}/${classStudents[i]?.name} `}
             student.push(batch)
           }
           }
@@ -95,37 +101,25 @@ const TransectionEntry = () => {
           if(studentInfo?.duesBatchMonthlyFee?.length > 0) {
             for(let i = 0 ; i <= studentInfo?.duesBatchMonthlyFee?.length - 1 ; i++)
           {
-            let batch = { value : {month : studentInfo?.duesBatchMonthlyFee[i].month , fee : batchDetails?.batchMonthlyFee} , label : `${studentInfo?.duesBatchMonthlyFee[i].month}/${batchDetails?.batchMonthlyFee} `}
+            let batch = { value : {month : studentInfo?.duesBatchMonthlyFee[i].month , fee : studentInfo?.duesBatchMonthlyFee[i].fee} , label : `${studentInfo?.duesBatchMonthlyFee[i].month}/${studentInfo?.duesBatchMonthlyFee[i].fee} `}
             duesMonthlyFee.push(batch)
           }
           }
           setDuesMonthlyFeeOptions(duesMonthlyFee)
           console.log(batchDetails);
-  },[ batchesStudents,useAXios,studentInfo?.duesMonth,studentInfo?.duesBatchMonthlyFee,batchDetails?.batchMonthlyFee,batchDetails,axiosInstance,dispatch])
+  },[ classStudents,useAXios,studentInfo?.duesMonth,studentInfo?.duesBatchMonthlyFee,batchDetails?.batchMonthlyFee,batchDetails,axiosInstance,dispatch])
 useEffect(() => {
   dispatch(fetchBatches({data: {searchTerm : ""}, axiosInstance : useAXios}))
   dispatch(fetchTransectionsCount({data: {searchTerm : ""}, axiosInstance : useAXios}))
  
 
-  //(batchesStudents.length);
+  //(classStudents.length);
 
       
 
 },[useAXios,dispatch])
-        const [batchSelectedOption, setBatchSelectedOption] = useState('');
-        const handleBatchChange = (selectedOption) => {
-            console.log(selectedOption);
-          dispatch(fetchBatchesStudents({data: {searchTerm : selectedOption}, axiosInstance : useAXios}))
-          dispatch(fetchBatchDetails({data: {searchTerm : selectedOption}, axiosInstance : useAXios}))
-          setStudentSelectedOption("")
-          setDuesMonthSelectedOption("")
-          setDuesMonthlyFeeSelectedOption("")
-          setDuesMonthlyFeeOptions([])
-          setDuesMonthOptions([])
-          // dispatch(fetchBatchDetails({data: {searchTerm : selectedOption}, axiosInstance : useAXios}))
-        
-       //(selectedOption);
-        };
+
+       
         const [studentSelectedOption, setStudentSelectedOption] = useState('');
         const handleStudentChange = (selectedOption) => {
        dispatch(fetchStudentDetails({data: {searchTerm : selectedOption?.value}, axiosInstance : useAXios}))
@@ -206,7 +200,8 @@ useEffect(() => {
         const form = e.target;
         const sendSms = form.sendSms.checked ;
         console.log(studentSelectedOption.value);
-        const student = batchesStudents?.find(student => student._id == studentSelectedOption.value)
+        const student = !_id ? classStudents?.find(student => student._id == studentSelectedOption.value) : studentInfo
+        console.log(student);
        if(typeof(studentSelectedOption.value) == 'string' ){
         const date = form.date.value;
         const category = form.category.value;
@@ -221,17 +216,16 @@ useEffect(() => {
         const duesBatchMonthlyFee = duesMonthlyFeeSelectedOption.length > 0 ? duesMonthlyFeeSelectedOption?.map(month => {return month.value}) : []
         console.log(duesMonth);
        
-               const formInfo = {batch : student?.batch,date,category ,duesBatchMonthlyFee,description,transectionMode,cashReceived,duesMonth,registrationNo :student?.registrationNo,invoiceNumber }
+               const formInfo = {batch : student?.batch,date,category ,duesBatchMonthlyFeePayment : duesBatchMonthlyFee,description,transectionMode,cashReceived,duesMonthPayment : duesMonth,registrationNo : student?.registrationNo ,invoiceNumber }
         console.log(formInfo);
       const res = await useAXios.post(`/payment`,formInfo)
       console.log(res?.data ,"okoksada");
         if(res?.data?.paymentResult?.insertedId) {
           // form.reset()
-          dispatch(fetchStudentDetails({data: {searchTerm : student?._id}, axiosInstance : useAXios}))
-          dispatch(fetchBatchesStudents({data: {searchTerm : ""}, axiosInstance : useAXios}))
-          dispatch(fetchBatchDetails({data: {searchTerm : ""}, axiosInstance : useAXios}))
-          dispatch(fetchStudentDetails({data: {searchTerm : ""}, axiosInstance : useAXios}))
+        if(!_id){
+           dispatch(fetchStudentDetails({data: {searchTerm : ""}, axiosInstance : useAXios}))
           setStudentSelectedOption("")
+        }
           setDuesMonthSelectedOption([])
           setDuesMonthlyFeeSelectedOption([])
           setDuesMonthlyFeeOptions([])
@@ -326,7 +320,9 @@ useEffect(() => {
         
                  </div>
             </div>
-            <div className="mt-2">
+       {
+        !_id && <>
+             <div className="mt-2">
                  <label
                 className="text-[16px] font-medium text-black w-full "
               >
@@ -334,7 +330,7 @@ useEffect(() => {
               </label>
                         <div className="flex flex-col sm:flex-row gap-8 items-center ">
                   
-           <select id="dropdown" name="studentClass" onChange={(e) => handleClassBatches(e.target.value)}  className="block border-[1px]  p-1  lg:text-[16px] mt-2 w-full rounded border-[#9E9E9E] font-medium outline-none  " required>
+           <select id="dropdown" name="studentClass" onChange={(e) => handleclassStudents(e.target.value)}  className="block border-[1px]  p-1  lg:text-[16px] mt-2 w-full rounded border-[#9E9E9E] font-medium outline-none  " required>
         
            <option value="সপ্তম">সপ্তম</option>
                    <option value="অষ্টম">অষ্টম</option>
@@ -344,30 +340,12 @@ useEffect(() => {
   </select>
            </div>
                  </div>
+                 </>
+       }
            {
              <>
             
-            <div className=" w-full mt-2">
-              <label
-                className="text-[16px] font-medium text-black w-full"
-              >
-             Batch
-              </label>
-              
-                        <div className="flex flex-col sm:flex-row gap-8 items-center  ">
-                  
-           <select id="dropdown1" name="batch" onChange={(e) => handleBatchChange(e.target.value)} className="block border-[1px]  p-1 font-light lg:text-[16px] mt-2 w-full rounded border-[#9E9E9E]" >
-           <option className="text-black hover:bg-blue-600"  value="...">...</option>
-           {classBatches?.map((category ) => <>
-           <option className="text-black hover:bg-blue-600" key={category?._id} value={category?.batchTitle}>{category?.batchTitle}</option>
-           </>)}
-                   
-                  
-                  
-  </select>
-        
-                 </div>
-            </div>
+           
 <div className=" w-full mt-2">
   <label
             className="text-[16px] font-medium text-black w-full"
@@ -378,7 +356,8 @@ useEffect(() => {
         options={studentOptions}
         onChange={handleStudentChange}
         styles={selectCustomStyles}
-        value={studentSelectedOption} // Set the value of the selected option
+        value={studentSelectedOption}
+        isDisabled={studentSelected} // Set the value of the selected option
       />
   </div>
 {

@@ -200,6 +200,14 @@ const AdminNavItem = () => {
           </NavLink>
 
           <NavLink
+            to="/dashboard/bulk-sms"
+            className="font-normal text-[18px] hover:bg-[#F0FBFF]"
+
+          >
+
+            Bulk Sms
+          </NavLink>
+          <NavLink
             to="/dashboard/dues-alert"
             className="font-normal text-[18px] hover:bg-[#F0FBFF]"
 
