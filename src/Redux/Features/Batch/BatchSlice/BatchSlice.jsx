@@ -49,7 +49,7 @@ export const fetchDuesAlert = createAsyncThunk(
 );
 
 
-const batchesSlice = createSlice({
+const batchSlice = createSlice({
   name: "batches",
   initialState: {
     batches: [],
@@ -132,4 +132,4 @@ const batchesSlice = createSlice({
   },
 });
 
-export default batchesSlice.reducer;
+export default batchSlice.reducer;
